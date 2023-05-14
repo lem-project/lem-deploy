@@ -12,7 +12,7 @@
   (setup-foreign-library-directories)
   (apply #'lem:lem args))
 
-(lem-lisp-mode/swank-modules:swank-modules)
+(lem-lisp-mode/swank-modules:require-swank-modules)
 
 (apply #'sb-ext:save-lisp-and-die
        "linux/lem-ncurses"

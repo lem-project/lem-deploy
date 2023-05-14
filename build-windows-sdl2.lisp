@@ -30,7 +30,7 @@
 (lem:copy-file-or-directory (asdf:system-relative-pathname :lem-sdl2 "resources/")
                             "windows/resources/")
 
-(lem-lisp-mode/swank-modules:swank-modules)
+(lem-lisp-mode/swank-modules:require-swank-modules)
 
 (apply #'sb-ext:save-lisp-and-die
        "windows/lem-internal.exe"
