@@ -1,7 +1,5 @@
 (ql:quickload :lem-sdl2)
 
-(setq lem::*deployed* t)
-
 (cffi:close-foreign-library 'async-process::async-process)
 (cffi:close-foreign-library 'cffi::libffi)
 (cffi:close-foreign-library 'cl+ssl/config::libcrypto)
@@ -23,14 +21,10 @@
   (cffi:load-foreign-library (lem:lem-relative-pathname "lib/SDL2_ttf.dll"))
   )
 
-(defun launch (&optional (args (uiop:command-line-arguments)))
-  (setup-foreign-library-directories)
-  (apply #'lem:lem args))
-
 (lem:copy-file-or-directory (asdf:system-relative-pathname :lem-sdl2 "resources/")
                             "windows/resources/")
 
-(lem-lisp-mode/swank-modules:require-swank-modules)
+(load "general.lisp")
 
 (apply #'sb-ext:save-lisp-and-die
        "windows/lem-internal.exe"
