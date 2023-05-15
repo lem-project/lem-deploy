@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Install packages
+        run: sudo apt install sbcl libsdl2-dev ibsdl2-imgae-dev libsdl2-ttf-dev
+
+      - name: Run a multi-line script
+        run: |
+          mkdir $HOME/common-lisp
+          git clone --recursive git@github.com/lem-project/lem.git $HOME/common-lisp
+          cd $GITHUB_WORKSPACE/lem-deploy
+          sbcl --load build-linux-ncurses.lisp
+          sbcl --loda build-linux-sdl2.lips
