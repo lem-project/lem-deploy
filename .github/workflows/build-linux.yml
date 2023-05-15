@@ -45,7 +45,7 @@ jobs:
         mkdir $HOME/common-lisp
         cd $HOME/common-lisp
         git clone --recursive https://github.com/lem-project/lem.git lem
-        git clone https://sharplispers/log4cl.git log4cl
+        git clone https://github.com/sharplispers/log4cl.git log4cl
         cd -
         ros -l build-linux-ncurses.lisp
         ros -l build-linux-sdl2.lisp
