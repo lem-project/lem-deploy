@@ -12,8 +12,8 @@
 ;; XXX:
 ;; (ql:quickload :drakma) causes sb-bsd-sockets require to fail.
 ;; Override this method to work around it.
-;; (defmethod asdf:perform ((o asdf:load-op) (s asdf:require-system))
-;;   nil)
+(defmethod asdf:perform ((o asdf:load-op) (s asdf:require-system))
+  nil)
 
 (defmethod asdf:output-files :around ((operation t) (component t))
   (call-next-method)
