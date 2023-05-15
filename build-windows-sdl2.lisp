@@ -33,5 +33,5 @@
        :application-type :GUI
        #+sb-core-compression
        '(:compression -1)
-       #+(not sb-core-compression)
-       '(:executable t))
+       #-sb-core-compression
+       '())
