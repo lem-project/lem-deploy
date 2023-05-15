@@ -47,3 +47,9 @@ jobs:
         git clone https://shraplispers/log4cl.git $HOME/common-lisp
         ros -l build-linux-ncurses.lisp
         ros -l build-linux-sdl2.lisp
+    - name: Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        path: |
+          linux
+          !linux/.gitignroe
