@@ -29,15 +29,13 @@ jobs:
         run: |
           sudo apt update
           sudo apt install sbcl libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
-      
-      - name: Install quicklisp
-        run: |
-          curl -O https://beta.quicklisp.org/quicklisp.lisp
-          sbcl --load quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
-
+  
       - name: Run a multi-line script
         run: |
           set -ex
+          curl -O https://beta.quicklisp.org/quicklisp.lisp
+          sbcl --load quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
+
           mkdir $HOME/common-lisp
           git clone --recursive https://github.com/lem-project/lem.git $HOME/common-lisp
           pwd
