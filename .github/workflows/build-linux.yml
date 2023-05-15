@@ -34,6 +34,7 @@ jobs:
         run: |
           mkdir $HOME/common-lisp
           git clone --recursive https://github.com/lem-project/lem.git $HOME/common-lisp
-          cd $GITHUB_WORKSPACE/lem-deploy
+          pwd
+          ls
           sbcl --load build-linux-ncurses.lisp
           sbcl --loda build-linux-sdl2.lips
