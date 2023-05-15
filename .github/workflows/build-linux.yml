@@ -23,22 +23,26 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+      
+    - name: Install Roswell
+      env:
+        LISP: ${{ matrix.lisp }}
+      run: |
+        curl -L https://raw.githubusercontent.com/roswell/roswell/v22.12.14.113/scripts/install-for-ci.sh | sh
+    - name: Run test
+      run: |
+        set -ex
 
-      - name: Install packages
-        run: |
-          sudo apt update
-          sudo apt install sbcl libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+    - name: Install packages
+      run: |
+        sudo apt update
+        sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
   
-      - name: Run a multi-line script
-        run: |
-          set -ex
-          curl -O https://beta.quicklisp.org/quicklisp.lisp
-          sbcl --load quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
-
-          mkdir $HOME/common-lisp
-          git clone --recursive https://github.com/lem-project/lem.git $HOME/common-lisp
-          pwd
-          ls
-          sbcl --load build-linux-ncurses.lisp
-          sbcl --load build-linux-sdl2.lisp
+    - name: Run a multi-line script
+      run: |
+        set -ex
+        mkdir $HOME/common-lisp
+        git clone --recursive https://github.com/lem-project/lem.git $HOME/common-lisp
+        ros -l build-linux-ncurses.lisp
+        ros -l build-linux-sdl2.lisp
