@@ -28,7 +28,12 @@ jobs:
       - name: Install packages
         run: |
           sudo apt update
-          sudo apt install sbcl cl-quicklisp libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+          sudo apt install sbcl libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
+      
+      - name: Install quicklisp
+        run: |
+          curl -O https://beta.quicklisp.org/quicklisp.lisp
+          sbcl --load quicklisp.lisp --eval '(quicklisp-quickstart:install)' --eval '(ql:add-to-init-file)'
 
       - name: Run a multi-line script
         run: |
