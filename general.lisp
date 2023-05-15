@@ -37,6 +37,15 @@
              (mapcar *output-translation-function* absolute-pathnames))))
      t)))
 
+(maphash (lambda (key value)
+           (declare (ignore value))
+           (unless (or (equal key "asdf")
+                       (equal key "asdf-package-system")
+                       (equal key "uiop")
+                       (uiop:string-prefix-p "sb-" key))
+             (remhash key asdf::*registered-systems*)))
+         asdf::*registered-systems*)
+
 (defun launch (&optional (args (uiop:command-line-arguments)))
   (setup-foreign-library-directories)
   (apply #'lem:lem args))
