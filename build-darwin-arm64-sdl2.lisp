@@ -6,6 +6,8 @@
 (cffi:close-foreign-library 'sdl2-image::libsdl2-image)
 
 (defun setup-foreign-library-directories ()
+  (uiop:chdir (user-homedir-pathname))
+
   (setf cffi:*foreign-library-directories* '())
   (setf lem-sdl2/resource::*resource-directory*
         (lem:lem-relative-pathname "../Resources/"))
