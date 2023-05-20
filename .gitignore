@@ -4,3 +4,5 @@ resources/
 lem-internal.exe
 lem.zip
 .DS_Store
+lem-sdl2.zip
+lem-ncurses.zip

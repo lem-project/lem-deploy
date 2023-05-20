@@ -8,6 +8,6 @@
 
 (load "general.lisp")
 
-(sb-ext:save-lisp-and-die "darwin/arm64/lem"
+(sb-ext:save-lisp-and-die "darwin/arm64/ncurses/lem"
                           :toplevel 'launch
                           :executable t)
