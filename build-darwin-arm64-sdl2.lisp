@@ -32,8 +32,8 @@
   (setf lem-sdl2/resource::*resource-directory*
         (lem:lem-relative-pathname "../Resources/"))
 
-  (cffi:load-foreign-library (lem:lem-relative-pathname "../Frameworks/libasyncprocess.so"))
-  )
+  (dolist (file (uiop:directory-files (lem:lem-relative-pathname "../Frameworks/")))
+    (cffi:load-foreign-library file)))
 
 (lem:copy-file-or-directory (asdf:system-relative-pathname :lem-sdl2 "resources/")
                             "darwin/arm64/lem.app/Contents/Resources/resources/")
