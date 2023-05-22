@@ -10,9 +10,7 @@ sbcl --load build-darwin-arm64-sdl2.lisp
 sbcl --load build-darwin-arm64-ncurses.lisp
 
 cd darwin/arm64
-zip -r lem-sdl2.zip lem.app/
-mv lem-sdl2.zip $DEPLOY_DIR/lem-darwin-arm64-sdl2.zip
-
-cd ncurses
-zip -r lem-ncurses.zip lem lib/
-mv lem-ncurses.zip $DEPLOY_DIR/lem-darwin-arm64-ncurses.zip
+cp -r lem.app $DEPLOY_DIR/
+cp -r ncurses $DEPLOY_DIR/terminal
+cp README.md $DEPLOY_DIR
+cd $DEPLOY_DIR
