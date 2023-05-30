@@ -1,6 +1,6 @@
 (in-package :cl-user)
 
-(setq lem::*deployed* t)
+(setq lem-core::*deployed* t)
 (lem-lisp-mode/swank-modules:require-swank-modules)
 
 (dolist (module sb-impl::*modules*)
